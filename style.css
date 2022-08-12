@@ -1,76 +1,181 @@
-body{
-    background-image: url('assets/land.png');
-    background-size: cover;
+body {
+  background-color: #202020;
+  height: 80vh;
+}
+.container {
+  background-image: url("assets/land.png");
+  background-size: cover;
+  height: 100%;
+  width: 90%;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+.player {
+  width: 80px;
+  height: 100px;
+  background-image: url("assets/player_front.png");
+  /* border: 3px solid blue; */
+  background-size: 240px 100%;
+  background-position: -80px 0;
+  position: absolute;
+  z-index: 1000;
+}
+.player.walk {
+  animation: walk 0.2s step-end infinite;
 }
 
-.player{
-    width: 80px;
-    height: 100px;
-    background-image: url('assets/player_front.png');
-    /* border: 3px solid blue; */
-    background-size: 240px 100%;
+@keyframes walk {
+  0%,
+  32% {
+    background-position: 0 0;
+  }
+  33%,
+  65% {
     background-position: -80px 0;
-    position: fixed;
-    z-index: 1000;
-}
-.player.walk{
-    animation: walk .2s step-start infinite;
-}
-
-@keyframes walk{
-    0%, 32%{
-        background-position: 0 0;
-    }
-    33%, 65%{
-        background-position: -80px 0;
-    }
-    66%, 100%{
-        background-position: -160px 0;
-    }
+  }
+  66%,
+  100% {
+    background-position: -160px 0;
+  }
 }
 
-.grass{
-    width: 50px;
-    height: 50px;
-    background-image: url('assets/grass.png');
-    background-size: 100% 100%;
-    position: fixed;
-    z-index: 1;
+.grassesAndBalls {
+  width: 95%;
+  height: 95%;
+  margin: auto;
+  position: relative;
 }
 
-.pokeball{
-    width: 25px;
-    height: 25px;
-    background-image: url('assets/pokeball.png');
-    background-size: 100% 100%;
-    position: fixed;
-    z-index: 0;
+.grass {
+  width: 50px;
+  height: 50px;
+  background-image: url("assets/grass.png");
+  background-size: 100% 100%;
+  z-index: 1;
+  position: absolute;
+  margin: auto;
 }
+
+.pokeball {
+  width: 25px;
+  height: 25px;
+  background-image: url("assets/pokeball.png");
+  background-size: 100% 100%;
+  position: absolute;
+  z-index: 0;
+  margin: auto;
+}
+
 
 .score {
-    position: relative;
-    padding: 10px;
-    width: 100px;
-    height: 60px;
-    background-color: aliceblue;
-    color: blue;
-    font-weight: bold;
-    font-size: 15px;
-    left: 0;
-    top: 0;
-    text-align: center;
-    line-height: 60px;
-    z-index: 1001;
-    border: 1px solid rgb(29, 28, 28);
-    border-radius: 5px;
+  position: absolute;
+  padding: 10px;
+  width: 100px;
+  height: 60px;
+  background-color: aliceblue;
+  color: blue;
+  font-weight: bold;
+  font-size: 15px;
+  left: 0;
+  top: 0;
+  text-align: center;
+  line-height: 60px;
+  z-index: 1001;
+  border: 1px solid rgb(29, 28, 28);
+  border-radius: 5px;
 }
 .win {
-    width: 80%;
-    height: 80%;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: aquamarine;
-    color: black;
+  width: 800px;
+  height: 600px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 15%);
+  background-color: aquamarine;
+  color: black;
+  z-index: 1002;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  line-height: 600px;
+}
+
+
+.arrow-buttons {
+  position: fixed;
+  width: 180px;
+  height: 180px;
+  background-color: #aaa;
+  border-radius: 50%;
+  z-index: 1002;
+  left: 15%;
+  bottom: 0;
+}
+.btn {
+  position: absolute;
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px;
+  transition: 0.2s ease;
+}
+.btn:hover {
+  box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.13);
+}
+.btn.speed:hover {
+  box-shadow: 0px 0px 10px 10px rgba(252, 249, 249, 0.425);
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-top: 6px solid #202020;
+  border-left: 6px solid #202020;
+  transform: rotate(45deg);
+  left: 15px;
+  top: 18px;
+}
+.btn.speed {
+  right: 15%;
+  bottom: 5%;
+  width: 80px;
+  height: 80px;
+}
+.btn.speed:before , .btn.speed:after {
+  content: "";
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  border-top: 3px solid #202020;
+  border-left: 3px solid #202020;
+  transform: rotate(45deg);
+  left: 26px;
+  top: 25px;
+}
+.btn.speed:after {
+  top: 40px;
+}
+
+.up {
+  top: 15px;
+  left: 55px;
+}
+.down {
+  transform: rotate(180deg);
+  left: 55px;
+  top: 95px;
+}
+.right {
+  transform: rotate(90deg);
+  top: 55px;
+  left: 95px;
+}
+.left {
+  transform: rotate(270deg);
+  left: 15px;
+  top: 55px;
 }
